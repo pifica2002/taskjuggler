@@ -206,7 +206,7 @@ task WMGame "Web & Mobile Game" {
       effort 20d
       actual:effort 25d
       allocate dev2
-      journalentry 2023-03-11 "Problems with Docker MongoDB" {
+      journalentry 2023-03-30 "Problems with Docker MongoDB" {
         author dev2
         alert yellow
         summary "La lista de ips públicas no se actualiza de manera sencilla y por ello no pueden conectarse los dockers."
