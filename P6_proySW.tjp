@@ -47,6 +47,7 @@ account cost "Project Cost" {
   account wFront "Web Front-End"
   account back "Back-End"
   account mFront "Mobile Front-End"
+  account tDeploy "Despliegue de la aplicación"
 }
 account rev "Payments"
 # The Profit&Loss analysis should be rev - cost accounts.
@@ -188,6 +189,30 @@ task WMGame "Web & Mobile Game" {
     effort 6d
     allocate dev1
     depends WMGame.tFEc
+  }
+
+  task tDeploy "Despliegue de la aplicación"{
+    purge chargeset
+    chargeset tDeploy
+    responsible dev2
+    depends WMGame.tback.tbackDev
+    depends WMGame.twebF.tGUId
+    task evDeploy "Evaluación del despliegue"{
+      effort 2d
+      actual:effort 3d
+      allocate dev2
+    }
+    task tCrearConectar "Crear y conectar los sercidores"{
+      effort 20d
+      actual:effort 25d
+      allocate dev2
+      journalentry 2023-03-11 "Problems with Docker MongoDB" {
+        author dev2
+        alert yellow
+        summary "La lista de ips públicas no se actualiza de manera sencilla y por ello no pueden conectarse los dockers."
+      }
+      depends WMGame.tDeploy.evDeploy
+    }
   }
   
   task ttest "Accpetance tests" {
