@@ -220,7 +220,7 @@ task WMGame "Web & Mobile Game" {
       allocate boss
       allocate dev2
       actual:effort 15d
-      start 2023-06-01
+      actual:start 2023-06-01
       journalentry 2023-04-13 "Problems with the planned dates" {
         author boss
         alert red
@@ -425,4 +425,15 @@ resourcereport resourceGraph "" {
   # We only like to show leaf tasks for leaf resources.
   hidetask ~(isleaf() & isleaf_())
   sorttasks plan.start.up
+}
+
+taskreport initialPlan "" {
+  scenarios actual
+  headline "Initial Project Plan"
+  columns bsi { width 50 title 'WBS' }, name { width 150 },
+          start { width 100 }, end { width 100 },
+          effort { width 100 },
+          alert { tooltip plan.journal
+                          != '' "<-query attribute='journal'->" width 150 },
+          status { width 150 }
 }
