@@ -328,7 +328,7 @@ textreport frame "" {
   }
   textreport "Initial Project Plan"{
     formats html
-    center '<[report id="initialProjectPlan"]>'
+    center '<[report id="initialPlan"]>'
   }
 }
 
