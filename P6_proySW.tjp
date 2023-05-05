@@ -160,6 +160,17 @@ task WMGame "Web & Mobile Game" {
       actual:effort 15d
       allocate dev4
     }
+    task tFEc "Mobile Front End Construction"{
+      effort 22d
+      actual:effort 30d
+      allocate dev2, dev4
+      depends WMGame.tmobileF.tGUIm
+      journalentry 2023-04-11 "Problems with the construction" {
+        author dev4
+        alert yellow
+        summary "The tool has given problems. You should change it."
+      }
+    }
   }
 
   task tFEc "Mobile Front End Construction"{
